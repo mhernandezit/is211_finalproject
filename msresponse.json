@@ -1,0 +1,238 @@
+[
+    {
+        "Modified": "2018-09-18T17:29:03.260000",
+        "Published": "2018-09-18T17:29:03.247000",
+        "cvss": 5.0,
+        "cwe": "CWE-918",
+        "id": "CVE-2018-16794",
+        "last-modified": "2018-11-20T14:27:20.320000",
+        "references": [
+            "http://packetstormsecurity.com/files/149376/Microsoft-ADFS-4.0-Windows-Server-2016-Server-Side-Request-Forgery.html",
+            "http://seclists.org/fulldisclosure/2018/Sep/13",
+            "http://www.securityfocus.com/bid/105378",
+            "https://seclists.org/bugtraq/2018/Sep/26"
+        ],
+        "summary": "Microsoft ADFS 4.0 Windows Server 2016 and previous (Active Directory Federation Services) has an SSRF vulnerability via the txtBoxEmail parameter in /adfs/ls.",
+        "vulnerable_configuration": [
+            "cpe:2.3:a:microsoft:active_directory_federation_services:4.0",
+            "cpe:2.3:o:microsoft:windows_server_2016"
+        ],
+        "vulnerable_configuration_cpe_2_2": [
+            "cpe:/a:microsoft:active_directory_federation_services:4.0",
+            "cpe:/o:microsoft:windows_server_2016:-"
+        ]
+    },
+    {
+        "Modified": "2017-01-06T22:00:28.710000",
+        "Published": "2014-11-11T17:55:05.153000",
+        "access": {
+            "authentication": "NONE",
+            "complexity": "LOW",
+            "vector": "NETWORK"
+        },
+        "cvss": "5.0",
+        "cvss-time": "2014-11-12T11:22:32.073000",
+        "cwe": "CWE-264",
+        "id": "CVE-2014-6331",
+        "impact": {
+            "availability": "NONE",
+            "confidentiality": "PARTIAL",
+            "integrity": "NONE"
+        },
+        "last-modified": "2018-10-12T18:07:34.770000",
+        "references": [
+            "http://blogs.technet.com/b/srd/archive/2014/11/11/assessing-risk-for-the-november-2014-security-updates.aspx",
+            "http://www.securityfocus.com/bid/70938",
+            "http://www.securitytracker.com/id/1031195",
+            "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2014/ms14-077"
+        ],
+        "summary": "Microsoft Active Directory Federation Services (AD FS) 2.0, 2.1, and 3.0, when a configured SAML Relying Party lacks a sign-out endpoint, does not properly process logoff actions, which makes it easier for remote attackers to obtain access by leveraging an unattended workstation, aka \"Active Directory Federation Services Information Disclosure Vulnerability.\"",
+        "vulnerable_configuration": [
+            "cpe:2.3:a:microsoft:active_directory_federation_services:2.1",
+            "cpe:2.3:o:microsoft:windows_server_2012:-::-:-:-:x64",
+            "cpe:2.3:a:microsoft:active_directory_federation_services:2.0",
+            "cpe:2.3:o:microsoft:windows_2008:-:sp2:-:-:-:-:x64",
+            "cpe:2.3:o:microsoft:windows_2008:-:sp2:-:-:-:-:x86",
+            "cpe:2.3:o:microsoft:windows_2008:r2:sp2:-:-:-:-:x64",
+            "cpe:2.3:a:microsoft:active_directory_federation_services:3.0",
+            "cpe:2.3:o:microsoft:windows_server_2012:r2:-:-:-:-:x64"
+        ],
+        "vulnerable_configuration_cpe_2_2": [
+            "cpe:/a:microsoft:active_directory_federation_services:2.1",
+            "cpe:/o:microsoft:windows_server_2012:::~~~x64~~",
+            "cpe:/a:microsoft:active_directory_federation_services:2.0",
+            "cpe:/o:microsoft:windows_2008::sp2:~~~~x64~",
+            "cpe:/o:microsoft:windows_2008::sp2:~~~~x86~",
+            "cpe:/o:microsoft:windows_2008:r2:sp2:~~~~x64~",
+            "cpe:/a:microsoft:active_directory_federation_services:3.0",
+            "cpe:/o:microsoft:windows_server_2012:r2::~~~x64~~"
+        ]
+    },
+    {
+        "Modified": "2016-12-30T21:59:21.623000",
+        "Published": "2015-06-09T21:59:29.483000",
+        "access": {
+            "authentication": "NONE",
+            "complexity": "MEDIUM",
+            "vector": "NETWORK"
+        },
+        "cvss": "4.3",
+        "cvss-time": "2015-07-20T13:17:29.210000",
+        "cwe": "CWE-79",
+        "id": "CVE-2015-1757",
+        "impact": {
+            "availability": "NONE",
+            "confidentiality": "NONE",
+            "integrity": "PARTIAL"
+        },
+        "last-modified": "2018-10-12T18:09:07.857000",
+        "references": [
+            "http://www.securityfocus.com/bid/75023",
+            "http://www.securitytracker.com/id/1032526",
+            "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2015/ms15-062"
+        ],
+        "summary": "Cross-site scripting (XSS) vulnerability in adfs/ls in Active Directory Federation Services (AD FS) in Microsoft Windows Server 2008 SP2 and R2 SP1 and Server 2012 allows remote attackers to inject arbitrary web script or HTML via the wct parameter, aka \"ADFS XSS Elevation of Privilege Vulnerability.\"",
+        "vulnerable_configuration": [
+            "cpe:2.3:a:microsoft:active_directory_federation_services:2.0",
+            "cpe:2.3:a:microsoft:active_directory_federation_services:2.1"
+        ],
+        "vulnerable_configuration_cpe_2_2": [
+            "cpe:/a:microsoft:active_directory_federation_services:2.0",
+            "cpe:/a:microsoft:active_directory_federation_services:2.1"
+        ]
+    },
+    {
+        "Modified": "2016-10-20T12:00:45.797000",
+        "Published": "2013-08-14T07:10:36.310000",
+        "access": {
+            "authentication": "NONE",
+            "complexity": "LOW",
+            "vector": "NETWORK"
+        },
+        "cvss": "5.0",
+        "cvss-time": "2016-10-20T09:58:52.103000",
+        "cwe": "CWE-200",
+        "id": "CVE-2013-3185",
+        "impact": {
+            "availability": "NONE",
+            "confidentiality": "PARTIAL",
+            "integrity": "NONE"
+        },
+        "last-modified": "2018-10-12T18:04:47.087000",
+        "references": [
+            "http://www.us-cert.gov/ncas/alerts/TA13-225A",
+            "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2013/ms13-066"
+        ],
+        "summary": "Microsoft Active Directory Federation Services (AD FS) 1.x through 2.1 on Windows Server 2003 R2 SP2, Windows Server 2008 SP2 and R2 SP1, and Windows Server 2012 allows remote attackers to obtain sensitive information about the service account, and possibly conduct account-lockout attacks, by connecting to an endpoint, aka \"AD FS Information Disclosure Vulnerability.\"",
+        "vulnerable_configuration": [
+            "cpe:2.3:a:microsoft:active_directory_federation_services:2.0",
+            "cpe:2.3:a:microsoft:active_directory_federation_services:2.1",
+            "cpe:2.3:o:microsoft:windows_server_2008:-:sp2:x64",
+            "cpe:2.3:o:microsoft:windows_server_2008:-:sp2:x86",
+            "cpe:2.3:o:microsoft:windows_server_2008:r2:sp1:x64",
+            "cpe:2.3:o:microsoft:windows_server_2012"
+        ],
+        "vulnerable_configuration_cpe_2_2": [
+            "cpe:/a:microsoft:active_directory_federation_services:2.0",
+            "cpe:/a:microsoft:active_directory_federation_services:2.1",
+            "cpe:/o:microsoft:windows_server_2008::sp2:x64",
+            "cpe:/o:microsoft:windows_server_2008::sp2:x86",
+            "cpe:/o:microsoft:windows_server_2008:r2:sp1:x64",
+            "cpe:/o:microsoft:windows_server_2012:-"
+        ]
+    },
+    {
+        "Modified": "2013-11-02T23:30:52.393000",
+        "Published": "2013-04-09T18:55:01.077000",
+        "access": {
+            "authentication": "NONE",
+            "complexity": "LOW",
+            "vector": "NETWORK"
+        },
+        "cvss": "5.0",
+        "cvss-time": "2013-04-10T11:07:00",
+        "cwe": "CWE-20",
+        "id": "CVE-2013-1282",
+        "impact": {
+            "availability": "PARTIAL",
+            "confidentiality": "NONE",
+            "integrity": "NONE"
+        },
+        "last-modified": "2018-10-12T18:04:01.927000",
+        "references": [
+            "http://www.us-cert.gov/ncas/alerts/TA13-100A",
+            "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2013/ms13-032"
+        ],
+        "summary": "The LDAP service in Microsoft Active Directory, Active Directory Application Mode (ADAM), Active Directory Lightweight Directory Service (AD LDS), and Active Directory Services allows remote attackers to cause a denial of service (memory consumption and service outage) via a crafted query, aka \"Memory Consumption Vulnerability.\"",
+        "vulnerable_configuration": [
+            "cpe:2.3:a:microsoft:active_directory",
+            "cpe:2.3:a:microsoft:active_directory_application_mode",
+            "cpe:2.3:a:microsoft:active_directory_lightweight_directory_service",
+            "cpe:2.3:a:microsoft:active_directory_services"
+        ],
+        "vulnerable_configuration_cpe_2_2": [
+            "cpe:/a:microsoft:active_directory:-",
+            "cpe:/a:microsoft:active_directory_application_mode:-",
+            "cpe:/a:microsoft:active_directory_lightweight_directory_service:-",
+            "cpe:/a:microsoft:active_directory_services:-"
+        ]
+    },
+    {
+        "Modified": "2013-10-10T23:53:10.720000",
+        "Published": "2013-09-11T10:03:48.347000",
+        "access": {
+            "authentication": "NONE",
+            "complexity": "LOW",
+            "vector": "NETWORK"
+        },
+        "cvss": "5.0",
+        "cvss-time": "2013-09-10T02:21:50",
+        "cwe": "CWE-20",
+        "id": "CVE-2013-3868",
+        "impact": {
+            "availability": "NONE",
+            "confidentiality": "PARTIAL",
+            "integrity": "NONE"
+        },
+        "last-modified": "2018-10-12T18:05:06.057000",
+        "references": [
+            "http://www.us-cert.gov/ncas/alerts/TA13-253A",
+            "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2013/ms13-079"
+        ],
+        "summary": "Microsoft Active Directory Lightweight Directory Service (AD LDS) on Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, and Windows 8 and Active Directory Services on Windows Server 2008 SP2 and R2 SP1 and Server 2012 allow remote attackers to cause a denial of service (LDAP directory-service outage) via a crafted LDAP query, aka \"Remote Anonymous DoS Vulnerability.\"",
+        "vulnerable_configuration": [
+            "cpe:2.3:a:microsoft:active_directory_lightweight_directory_service",
+            "cpe:2.3:o:microsoft:windows_server_2008:-:r2:x64",
+            "cpe:2.3:o:microsoft:windows_server_2008:-:sp2:x64",
+            "cpe:2.3:o:microsoft:windows_server_2008:-:sp2:x86",
+            "cpe:2.3:a:microsoft:active_directory_lightweight_directory_service",
+            "cpe:2.3:o:microsoft:windows_8:-:-:x64",
+            "cpe:2.3:o:microsoft:windows_8:-:-:x86",
+            "cpe:2.3:a:microsoft:active_directory_lightweight_directory_service",
+            "cpe:2.3:o:microsoft:windows_7:-:sp1:x64",
+            "cpe:2.3:o:microsoft:windows_7:-:sp1:x86",
+            "cpe:2.3:a:microsoft:active_directory_lightweight_directory_service",
+            "cpe:2.3:o:microsoft:windows_server_2012",
+            "cpe:2.3:a:microsoft:active_directory_lightweight_directory_service",
+            "cpe:2.3:o:microsoft:windows_vista:-:sp2",
+            "cpe:2.3:o:microsoft:windows_vista:-:sp2:x64"
+        ],
+        "vulnerable_configuration_cpe_2_2": [
+            "cpe:/a:microsoft:active_directory_lightweight_directory_service:-",
+            "cpe:/o:microsoft:windows_server_2008::r2:x64",
+            "cpe:/o:microsoft:windows_server_2008::sp2:x64",
+            "cpe:/o:microsoft:windows_server_2008::sp2:x86",
+            "cpe:/a:microsoft:active_directory_lightweight_directory_service:-",
+            "cpe:/o:microsoft:windows_8:-:-:x64",
+            "cpe:/o:microsoft:windows_8:-:-:x86",
+            "cpe:/a:microsoft:active_directory_lightweight_directory_service:-",
+            "cpe:/o:microsoft:windows_7::sp1:x64",
+            "cpe:/o:microsoft:windows_7::sp1:x86",
+            "cpe:/a:microsoft:active_directory_lightweight_directory_service:-",
+            "cpe:/o:microsoft:windows_server_2012:-",
+            "cpe:/a:microsoft:active_directory_lightweight_directory_service:-",
+            "cpe:/o:microsoft:windows_vista::sp2",
+            "cpe:/o:microsoft:windows_vista::sp2:x64"
+        ]
+    }
+]

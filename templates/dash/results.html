@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Grade Management{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>Grade management</h3>
+        <form action="/results/add" method="post">
+            <div class="form-inline">
+                <div class="form-group mr-2">
+                    <select class="form-control" name="student_list" id="student_list" required>
+                        {% for student in student_list %}
+                            <div class="col"><option value="{{ student.0 }}">{{ student.1 }} {{ student.2 }}</option></div>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group mr-2">
+                    <select class="form-control" name="quiz_list" id="quiz_list" required>
+                        {% for quiz in quiz_list %}
+                            <option value = "{{ quiz.0 }}">{{ quiz.1 }}</option>
+                        {% endfor %}
+                    </select>
+               </div>
+               <div class="form-group mr-2">
+                    <input class="form-control" type="number" name="score" placeholder="Quiz Score" required>
+                    <input class="btn btn-success" class="form-control" type="submit" value="Add Quiz Result">
+                </div>
+            </div>
+
+        </form>
+        <a href="/dashboard" button type="button" class="btn btn-primary">Back to Dashboard</a></button>
+    </div>
+{% endblock %}
