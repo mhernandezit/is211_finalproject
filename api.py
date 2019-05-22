@@ -3,7 +3,7 @@ from requests.auth import HTTPDigestAuth
 import json
 import pandas as pd
 from db_management import (User, Device, Vendor,
-    Vulnerabilities, References, Base, Inventory)
+    Vulnerabilities, Refs, Base, Inventory)
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -20,9 +20,9 @@ def get_vendors():
         vendors_df = pd.read_json(myResponse.content)
         vendor_df = vendors_df.drop('product', axis=1)
         vendor_df.rename(columns={'vendor':'name'}, inplace=True)
-        append_data = df_dedupe(vendor_df, 'vendor', engine, dup_cols=['name'])
-        append_data.to_sql('vendor', engine, if_exists='append', index=False)
-        return vendor_df
+        vendor_data = df_dedupe(vendor_df, 'vendor', engine, dup_cols=['name'])
+        vendor_data.to_sql('vendor', engine, if_exists='append', index=False)
+        return vendor_data
     else:
         myResponse.raise_for_status()
 
@@ -39,10 +39,11 @@ def get_devices(vendor):
     if(myResponse.ok):
         device_df = pd.read_json(myResponse.content)
         device_df.rename(columns={'vendor':'name'}, inplace=True)
-        append_data = df_dedupe(device_df, 'device', engine, dup_cols=['product'])
-        append_data['vendor_id'] = vendor_id
-        append_data.drop('name', axis=1, inplace=True)
-        append_data.to_sql('device', engine, if_exists='append', index=False)
+        device_data = df_dedupe(device_df, 'device', engine, dup_cols=['product'])
+        device_data['vendor_id'] = vendor_id
+        device_data.drop('name', axis=1, inplace=True)
+        device_data.to_sql('device', engine, if_exists='append', index=False)
+        return device_data
     else:
         myResponse.raise_for_status()
 
@@ -64,12 +65,14 @@ def df_dedupe(df, tablename, engine, dup_cols=[]):
     df.drop(['_merge'], axis=1, inplace=True)
     return df
 
-def build_references(dataframe):
+def build_refs(dataframe):
     refcolumns = ['id','references']
+    ref = dataframe.loc[:, refcolumns]
     ref = list_to_dataframe(dataframe, refcolumns)
     ref.rename(columns={'id':'cve_id', 'references': 'url'}, inplace=True)
-    append_data = df_dedupe(ref, 'references', engine, dup_cols=['url'])
-    append_data.to_sql('references', engine, if_exists='append', index=False)
+    ref_data = df_dedupe(ref, 'refs', engine, dup_cols=['cve_id'])
+    ref_data.to_sql('refs', engine, if_exists='append', index=False)
+    return ref_data
 
 
 def get_vulnerability(vendor, device):
@@ -77,25 +80,26 @@ def get_vulnerability(vendor, device):
     url = "https://cve.circl.lu/api/search/{}/{}".format(vendor, device)
 
     myResponse = requests.get(url, verify=True)
-    vendor_id = session.query(Vendor).filter(Vendor.name.startswith(vendor)).one().id
-    device_id = session.query(Device).filter(Device.product.startswith(device)).one().id
-
+    device_id = session.query(Device).filter(Device.product == device).one().id
+    session.query(User).filter(User.id == 2)
     if(myResponse.ok):
         vulncolumns = ['id', 'cvss']
         df = pd.read_json(myResponse.content)
-
         vuln = df.loc[:, vulncolumns]
         vuln['device_id'] = device_id
         vuln.rename(columns={'id':'cve_id'}, inplace=True)
-        vuln.to_sql('vulnerabilities', engine, if_exists='append', index=False)
+        vuln_data = df_dedupe(vuln, 'vulnerabilities', engine, dup_cols=['cve_id'])
+        vuln_data.to_sql('vulnerabilities', engine, if_exists='append', index=False)
+        build_refs(df)
+        return vuln_data
 
     else:
         myResponse.raise_for_status()
 
 def list_to_dataframe(dataframe, columns):
     result = dataframe.loc[:, columns]
-    references = result.references.apply(pd.Series)
-    merged = references.merge(result, left_index = True, right_index = True)
+    refs = result.references.apply(pd.Series)
+    merged = refs.merge(result, left_index = True, right_index = True)
     pre_melt = merged.drop(["references"], axis = 1)
     melted = pre_melt.melt(id_vars = ['id'], value_name = "references")
     pre_na = melted.drop(['variable'], axis=1)
@@ -118,12 +122,16 @@ def add_user(username, password):
 
 #db.commit()
 engine = create_engine('sqlite:///vuln.db')
-# drop_tables()
+#drop_tables()
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-get_vendors()
-get_devices('cisco')
-get_vulnerability('cisco','3660_router')
+vendor_list = get_vendors()
+device_list = get_devices('microsoft')
+vuln_list = get_vulnerability('microsoft','windows_10')
+
+vendors = ['cisco','microsoft','']
+devices = ['windows_7','windows_10','']
+#build_references(vuln_list)
 #data = populate_vendors(db)
 #print df

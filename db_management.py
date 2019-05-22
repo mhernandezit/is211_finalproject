@@ -33,8 +33,8 @@ class Inventory(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     device_id = Column(Integer, ForeignKey('device.id'))
 
-class References(Base):
-    __tablename__ = 'references'
+class Refs(Base):
+    __tablename__ = 'refs'
     id = Column(Integer, primary_key=True)
     cve_id = Column(String(15), ForeignKey('vulnerabilities.cve_id'))
     url = Column(String(250), nullable=True)
@@ -42,10 +42,9 @@ class References(Base):
 class Vulnerabilities(Base):
     __tablename__ = 'vulnerabilities'
     id = Column(Integer, primary_key=True)
-    cve_id = Column(String(15), primary_key=True, unique=True)
-    cvss = Column(Numeric(precision=2), nullable=False)
+    cve_id = Column(String(15))
+    cvss = Column(Integer)
     device_id = Column(Integer, ForeignKey('device.id'))
-    ref_id = Column(Integer, ForeignKey('references.id'))
 
 # Create an engine that stores data in the local directory's
 # sqlalchemy_example.db file.
